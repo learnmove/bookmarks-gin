@@ -31,7 +31,7 @@ export PORT=4000
 
 Download source, fetch dependencies, compile and run
 ```bash
-git clone https://github.com/stefanjarina/bookmarks-gin
+go get github.com/stefanjarina/bookmarks-gin
 cd $GOPATH/src/github.com/stefanjarina/bookmarks-gin
 
 go get
