@@ -1,0 +1,27 @@
+<div class="container" ng-controller="NewCtrl">
+  <div class="page-header">
+    <h3>{{ name }}</h3>
+  </div>
+
+  <form novalidate>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" ng-model="bookmark.name">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" ng-model="bookmark.description">
+    </div>
+
+    <div class="form-group">
+      <label for="url">URL: (including http|https)</label>
+      <input type="text" class="form-control" id="url" ng-model="bookmark.url">
+    </div>
+
+    <input type="submit" ng-click="new(bookmark)" value="Send!" />
+
+  </form>
+
+</div>
