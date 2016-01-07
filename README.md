@@ -22,9 +22,11 @@ CREATE DATABASE bookmarks_gin;
 GRANT ALL ON bookmarks_gin.* TO 'bookmarks_gin'@'localhost';
 ```
 
-**You need to edit mysql connection URI**
+**You need to specify few variables**
 ```bash
-export GO_MYSQL_URI="mysql://bookmarks_gin:password@localhost/bookmarks_gin"
+export GO_MYSQL_URI="bookmarks_gin:password@/bookmarks_gin"
+export IP=0.0.0.0
+export PORT=4000
 ```
 
 Download source, fetch dependencies, compile and run
@@ -36,7 +38,3 @@ go get
 go build
 ./bookmarks-gin
 ```
-
-You can specify different IP/PORT by creating/changing these env variables
-- $IP
-- $PORT
