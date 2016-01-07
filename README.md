@@ -7,8 +7,8 @@
 * MySQL
 
 #### TODO:
-- [ ] Change Mongoose to GORM
-- [ ] Fix code formatting
+- [x] Change MongoDB to GORM and MySQL
+- [x] Fix code formatting
 
 ### Installation
 
