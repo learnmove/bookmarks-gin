@@ -9,6 +9,9 @@
 #### TODO:
 - [x] Change MongoDB to GORM and MySQL
 - [x] Fix code formatting
+- [ ] Proper testing + TDD onwards
+- [ ] Users + authentification - probably leverage jwt tokens
+- [ ] Backend filters support
 
 ### Installation
 
