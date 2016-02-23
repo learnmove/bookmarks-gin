@@ -10,7 +10,8 @@
 - [x] Change MongoDB to GORM and MySQL
 - [x] Fix code formatting
 - [ ] Proper testing + TDD onwards
-- [ ] Users + authentification - probably leverage jwt tokens
+- [x] Users + authentification - probably leverage jwt tokens
+- [ ] Public/Private Bookmarks
 - [ ] Backend filters support
 
 ### Installation

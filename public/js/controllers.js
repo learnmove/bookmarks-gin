@@ -1,13 +1,23 @@
-myApp.controller("HeaderCtrl", ['$scope', '$location',
-  function($scope, $location) {
+myApp.controller("HeaderCtrl", ['$scope', '$location', 'UserAuthFactory',
+  function($scope, $location, UserAuthFactory) {
 
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.logout = function () {
+      UserAuthFactory.logout();
+    };
   }
 ]);
 
-myApp.controller("HomeCtrl", ['$scope', 'bookmarkFactory',
+myApp.controller("HomeCtrl", ['$scope',
+  function($scope) {
+    $scope.name = "Welcome";
+  }
+]);
+
+myApp.controller("BookmarkCtrl", ['$scope', 'bookmarkFactory',
   function($scope, bookmarkFactory) {
     $scope.name = "Bookmarks";
 
@@ -27,7 +37,7 @@ myApp.controller("NewCtrl", ['$scope', '$location', 'bookmarkFactory',
 
     $scope.new = function (bookmark) {
       bookmarkFactory.new(bookmark).then(function (data){
-        $location.path("/");
+        $location.path("/bookmarks");
       });
     };
   }
@@ -47,7 +57,7 @@ myApp.controller("EditCtrl", ['$scope', '$window', '$location', 'bookmarkFactory
 
     $scope.update = function (bookmark) {
       bookmarkFactory.update(bookmark).then(function (data){
-        $location.path("/");
+        $location.path("/bookmarks");
       });
     };
 
@@ -56,11 +66,24 @@ myApp.controller("EditCtrl", ['$scope', '$window', '$location', 'bookmarkFactory
 
       if(deleteBookmark){
         bookmarkFactory.delete(bookmark).then(function (data){
-          $location.path("/");
+          $location.path("/bookmarks");
         });
       }else{
         return;
       }
     };
+  }
+]);
+
+myApp.controller("AdminCtrl", ['$scope', '$location', 'adminFactory',
+  function($scope, $location, adminFactory) {
+    $scope.name = "Admin";
+
+    $scope.users = [];
+
+    // Access the factory and get all the bookmarks
+    adminFactory.getAllUsers().then(function (data) {
+      $scope.users = data.data;
+    });
   }
 ]);

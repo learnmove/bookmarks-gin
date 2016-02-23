@@ -2,6 +2,8 @@ package main
 
 // IMPORTS
 import (
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 )
@@ -29,10 +31,12 @@ func addBookmark(c *gin.Context) {
 		c.JSON(404, "Couldn't bind!")
 	} else {
 		if db.NewRecord(bookmark) {
+			bookmark.CreatedAt = time.Now().UTC()
+			bookmark.UpdatedAt = time.Now().UTC()
 			db.Create(&bookmark)
 			c.JSON(201, bookmark)
 		} else {
-			c.JSON(400, "This user already exist")
+			c.JSON(400, "This bookmark already exist")
 		}
 	}
 }
@@ -51,6 +55,7 @@ func updateBookmark(c *gin.Context) {
 		bookmark.Name = changeset.Name
 		bookmark.Description = changeset.Description
 		bookmark.Url = changeset.Url
+		bookmark.UpdatedAt = time.Now().UTC()
 		db.Save(&bookmark)
 		c.JSON(201, bookmark)
 	}
