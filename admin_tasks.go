@@ -31,12 +31,12 @@ func CreateDBAdmin(clc *cli.Context) {
 	user.Role = "admin"
 
 	if db.NewRecord(user) {
-    if err = db.Create(&user).Error; err != nil {
-  		fmt.Printf("%v\n", err)
-  	} else {
-  		fmt.Printf("Admin user with username: '%s' has been created successfuly!\n", clc.String("username"))
-  	}
+		if err = db.Create(&user).Error; err != nil {
+			fmt.Printf("%v\n", err)
+		} else {
+			fmt.Printf("Admin user with username: '%s' has been created successfuly!\n", clc.String("username"))
+		}
 	} else {
-	  fmt.Printf("Admin user with username: '%s' already exist!\n", clc.String("username"))
+		fmt.Printf("Admin user with username: '%s' already exist!\n", clc.String("username"))
 	}
 }

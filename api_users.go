@@ -25,9 +25,9 @@ func getUser(c *gin.Context) {
 
 func addUser(c *gin.Context) {
 	var (
-		user User
-		err  error
-		passHash     []byte
+		user     User
+		err      error
+		passHash []byte
 	)
 	err = c.BindWith(&user, binding.JSON)
 	if err != nil {
@@ -56,8 +56,8 @@ func updateUser(c *gin.Context) {
 	var (
 		user      User
 		changeset User
-		err error
-		passHash     []byte
+		err       error
+		passHash  []byte
 	)
 	id := c.Params.ByName("id")
 	db.First(&user, id)

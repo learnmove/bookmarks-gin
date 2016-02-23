@@ -40,5 +40,6 @@ cd $GOPATH/src/github.com/stefanjarina/bookmarks-gin
 
 go get
 go build
+./bookmarks-gin initdb --password "your_new_admin_pass"
 ./bookmarks-gin
 ```
