@@ -24,6 +24,7 @@ func validateRequest(c *gin.Context) {
 	token, err := jwt.Parse(t, func(token *jwt.Token) (interface{}, error) {
 		return key, nil
 	})
+	claims := token.Claims.(jwt.MapClaims)
 
 	// Token is not valid or there was error when decoding
 	if err != nil || !token.Valid {
@@ -50,7 +51,7 @@ func validateRequest(c *gin.Context) {
 	}
 
 	// Check if token is expired
-	expireIn := int64(reflect.ValueOf(token.Claims["exp"]).Float())
+	expireIn := int64(reflect.ValueOf(claims["exp"]).Float())
 
 	if expired(expireIn) {
 		c.AbortWithStatus(400)

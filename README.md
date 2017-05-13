@@ -28,7 +28,7 @@ GRANT ALL ON bookmarks_gin.* TO 'bookmarks_gin'@'localhost';
 
 **You need to specify few variables**
 ```bash
-export GO_MYSQL_URI="bookmarks_gin:password@/bookmarks_gin"
+export GO_MYSQL_URI="bookmarks_gin:password@/bookmarks_gin?parseTime=true"
 export IP=0.0.0.0
 export PORT=4000
 ```

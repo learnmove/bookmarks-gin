@@ -16,7 +16,7 @@ import (
 )
 
 // db connection object
-var db gorm.DB
+var db *gorm.DB
 
 func init() {
 	// Set KEY PATH based on location of binary

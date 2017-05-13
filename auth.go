@@ -113,7 +113,8 @@ func checkUser(username string) (DbUserObject, error) {
 func genToken(user DbUserObject) Token {
 	expires := expiresIn(7)
 	token := jwt.New(jwt.GetSigningMethod("HS256"))
-	token.Claims["exp"] = expires
+	claims := token.Claims.(jwt.MapClaims)
+	claims["exp"] = expires
 	tokenString, err := token.SignedString(key)
 	if err != nil {
 		return Token{}
