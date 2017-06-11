@@ -1,3 +1,6 @@
 bookmarks-gin
 key.pem
 .idea/
+.vscode/
+debug
+launch.json
