@@ -9,7 +9,7 @@ type Bookmark struct {
 	ID          uint   `json:"id" gorm:"primary_key" sql:"AUTO_INCREMENT"`
 	Name        string `json:"name" sql:"type:varchar(36)"`
 	Description string `json:"description" sql:"type:varchar(200)"`
-	Url         string `json:"url" sql:"type:varchar(300)"`
+	URL         string `json:"url" sql:"type:varchar(300)"`
 
 	CreatedAt time.Time  `json:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at"`

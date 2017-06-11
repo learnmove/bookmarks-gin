@@ -35,7 +35,7 @@ func generateKeyFile() error {
 	if checkKeyFile() {
 		return nil
 	}
-	err = errors.New("Couldn't create key file!!!")
+	err = errors.New("couldn't create key file")
 	return err
 }
 
