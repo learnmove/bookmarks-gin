@@ -1,0 +1,13 @@
+[app]
+ip = "localhost"
+port = "4000"
+
+[database]
+engine = "postgres" # Other options: 'mysql', 'sqlite3', "mssql"
+host = "localhost"
+user = "bookmarks_gin"
+password = "bookmarks_gin"
+dbname = "bookmarks_gin"
+sslmode = "disable" # Used only with postgres
+filepath = "/tmp/bookmarks_gin.db" # Used only with SqLite 3 - absolute path
+port = "1433" # Used only for MSSQL for now
