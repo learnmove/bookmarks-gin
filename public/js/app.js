@@ -65,7 +65,7 @@ myApp.run(function($rootScope, $window, $location, AuthenticationFactory) {
     $rootScope.showMenu = AuthenticationFactory.isLogged;
     $rootScope.role = AuthenticationFactory.userRole;
     // if the user is already logged in, take him to the home page
-    if (AuthenticationFactory.isLogged == true && $location.path() == '/login') {
+    if (AuthenticationFactory.isLogged === true && $location.path() === '/login') {
       $location.path('/');
     }
   });
