@@ -51,7 +51,7 @@ func loginHandler(c *gin.Context) {
 		// get user from database and fill our struct
 		dbUserObject, err := validateUser(login.Username, login.Password)
 		if err != nil {
-			// return 401 if incorect user or password
+			// return 401 if incorrect user or password
 			c.JSON(401, "Invalid Credentials")
 			return
 		}

@@ -1,3 +1,10 @@
 bookmarks-gin
 key.pem
+<<<<<<< HEAD
 .idea
+=======
+.idea/
+.vscode/
+debug
+launch.json
+>>>>>>> origin/master

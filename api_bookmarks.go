@@ -54,7 +54,7 @@ func updateBookmark(c *gin.Context) {
 	} else {
 		bookmark.Name = changeset.Name
 		bookmark.Description = changeset.Description
-		bookmark.Url = changeset.Url
+		bookmark.URL = changeset.URL
 		bookmark.UpdatedAt = time.Now().UTC()
 		db.Save(&bookmark)
 		c.JSON(201, bookmark)

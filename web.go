@@ -3,16 +3,18 @@ package main
 // IMPORTS
 import (
 	"fmt"
-	"net"
-	"net/http"
 	"os"
 	"path/filepath"
 
 	"github.com/codegangsta/cli"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mssql"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"github.com/spf13/viper"
 )
 
 // db connection object
@@ -40,20 +42,31 @@ func init() {
 // main function
 func main() {
 	var err error
+	// Read configuration file
+	viper.SetConfigName("app")
+	viper.AddConfigPath("./")
+	err = viper.ReadInConfig()
+	if err != nil {
+		fmt.Println("Config file not found...")
+		panic(err)
+	}
+
 	// connect to database
-	db, err = gorm.Open("mysql", os.Getenv("GO_MYSQL_URI"))
+	db, err = gorm.Open(viper.GetString("database.engine"), getSQLString())
 	if err != nil {
 		panic(err)
 	}
+	defer db.Close()
 	//initialize it
 	db.DB()
 
+	// Configure CLI
 	app := cli.NewApp()
 	app.Name = "Bookmarks-Gin"
-	app.Usage = "Server for bookmarks-gin"
+	app.Usage = "Server in Gin for Bookmarks"
 	app.Author = "Stefan Jarina"
 	app.Email = "stefan@jarina.cz"
-	app.Version = "0.0.2"
+	app.Version = "0.0.3"
 	app.Action = func(clc *cli.Context) {
 		// initialize gin
 		r := gin.Default()
@@ -87,16 +100,7 @@ func main() {
 			}
 		}
 
-		// start up server
-		if clc.Bool("socket") {
-			l, err := net.Listen("unix", "/tmp/bookmarks-gin.sock")
-			if err != nil {
-				panic(err)
-			}
-			http.Serve(l, r)
-		} else {
-			r.Run(getAddrIP(clc))
-		}
+		r.Run(getAddrIP(clc))
 	}
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
@@ -106,10 +110,6 @@ func main() {
 		cli.StringFlag{
 			Name:  "port",
 			Usage: "Specify PORT application should bind to",
-		},
-		cli.BoolFlag{
-			Name:  "socket",
-			Usage: "Specify if SOCKET should be used",
 		},
 	}
 
